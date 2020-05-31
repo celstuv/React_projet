@@ -3,15 +3,15 @@ import React from 'react';
 const Car = (props) => {
   /*  Dans le fichier parent MyCar.js, <Car>Ford</Car> : Car est le props , Ford est l'objet */
 
-  const colorInfo = props.color ? <p>Couleur : {props.color}</p> : <p>Couleur : Néant</p>;
+  const colorInfo = props.color ? (`Couleur : ${props.color}`) : (<p>Couleur : Néant</p>); /*Deux écritures possible avec ou sans balise <p>*/
 
   if(props.children) {
     return(
-      <div className="car">
-        <p>Marque : {props.children}</p>
-        <p>Année : {props.year}</p>
-        <p>{colorInfo}</p>
-      </div>
+      <tr className="car" style={ {backgroundColor:'#81ecec'} }>
+        <td>Marque : {props.children}</td>
+        <td>Année : {props.year}</td>
+        <td>{colorInfo}</td>
+      </tr>
       )
     } else {
        return null;

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import Car from './Cars';
 
 class Mycars extends Component {
@@ -41,33 +41,42 @@ addTenYears = () => {
     // console.log(this);
     /* console.log affiche props: {title: "Mon Catalogue de Voitures"}*/
     return(
-      <div>
+      <Fragment> {/*ou <>*/}
         <h1 /*onMouseOver={this.addStyle}*/> {this.props.title}</h1>
+
+        <p /*onCopy={this.noCopy}*/> Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
 
         <button onClick={this.addTenYears}> + 10 ans </button>
 
-        <p /*onCopy={this.noCopy}*/> Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        <table className="carsTable">
+          <tr>
+            <th>Marque</th>
+            <th>Age</th>
+            <th>Couleur</th>
+          </tr>
+
 {
         // <Car  color={this.state.voitures[0].color} year={year - this.state.voitures[0].year + ' ans'}>{this.state.voitures[0].name}</Car>
         // {/* Car est le props , Ford est l'objet*/}
         // <Car color={this.state.voitures[1].color} year={year - this.state.voitures[1].year + ' ans'}>{this.state.voitures[1].name}</Car>
         // <Car color={this.state.voitures[2].color} year={year - this.state.voitures[2].year + ' ans'}>{this.state.voitures[2].name}</Car>
 }
-        { //c'est du javascript donc il faut mettre les accolades
-          //cette formule permet de parcourir le tableau state
-          this.state.voitures.map((voiture, index) => {
-            return (
-              <div key={index}>
-                <Car  color={voiture.color} year={year - voiture.year + ' ans'}>{voiture.name}</Car>
-                {//Deuxième méthode
-                // <Car  name={voiture.name} color={voiture.color} year={year - voiture.year + ' ans'} />
-                }
-              </div>
-            )
-          })
-        }
-
-      </div>
+          { //c'est du javascript donc il faut mettre les accolades
+            //cette formule permet de parcourir le tableau state
+            this.state.voitures.map((voiture, index) => {
+              return (
+                <Fragment key={index}>
+                  <Car  color={voiture.color} year={year - voiture.year + ' ans'}>{voiture.name}</Car>
+                  {//Deuxième méthode
+                  // <Car  name={voiture.name} color={voiture.color} year={year - voiture.year + ' ans'} />
+                  }
+                </Fragment>
+              )
+            })
+          }
+        </table>
+        {/*ou </>*/}
+      </Fragment>
     )
 
   }
